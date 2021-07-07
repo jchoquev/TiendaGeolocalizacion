@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Usuario Node JS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="css/Usuario.css">
+</head>
+<body>
+    <div class="container py-5 px-4">
+        <!-- For demo purpose-->
+        <header>
+            <div class="container">
+              <div class="row">
+                <form id="NuevoUsuario" class="col-md-6" action="http://localhost:3000/api/usuario/nuevo" method="POST">
+                    <h3>Deliberi Puno</h3>
+                    <div class="form-group">
+                      <label for="NDoc">NUMERO DE DOCUMENTO</label>
+                      <input type="text" class="form-control" id="NDoc" placeholder="NUMERO DE DOCUMENTO">
+                    </div>
+                    <div class="form-group">
+                        <label for="Nombres">NOMBRES</label>
+                        <input type="text" class="form-control" id="Nombres" placeholder="NOMBRES">
+                    </div>
+                    <div class="form-group">
+                        <label for="Ape_Paterno">APELLIDO PATERNO</label>
+                        <input type="text" class="form-control" id="Ape_Paterno" placeholder="APELLIDO PATERNO">
+                    </div>
+                    <div class="form-group">
+                        <label for="Ape_Materno">APELLIDO MATERNO</label>
+                        <input type="text" class="form-control" id="Ape_Materno" placeholder="APELLIDO MATERNO">
+                    </div>
+                    <div class="form-group">
+                        <label for="Direccion">DIRECCION</label>
+                        <input type="text" class="form-control" id="Direccion" placeholder="DIRECCION">
+                    </div>
+                    <div class="form-group">
+                        <label for="N_Celular">NUMERO DE TELEFONO</label>
+                        <input type="text" class="form-control" id="N_Celular" placeholder="NUMERO DE TELEFONO">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Iniciar</button>
+                </form>
+                <form id="NuevoPedido" class="col-md-6" action="http://localhost:3000/" method="POST">
+                  <h3>Hacer Pedido</h3>
+                  <div class="form-group">
+                    <label for="NDoc">CANTIDAD DE HAMBURGUESAS</label>
+                    <input type="text" class="form-control" id="NumHamburguesas" placeholder="CANTIDAD DE HAMBURGUESAS">
+                  </div>
+                  <div class="form-group">
+                    <label for="NDoc">TIENDA</label>
+                    <select class="form-control" id="_idEmpresa"></select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Hacer Pedido</button>
+                  <div id="Mapa"></div>
+                </form>
+              </div>
+            </div>
+        </header>
+        <br>
+        <!--div class="row rounded-lg overflow-hidden shadow">
+          <div class="col-5 px-0">
+            <div class="bg-white">
+      
+              <div class="bg-gray px-4 py-2 bg-light">
+                <p class="h5 mb-0 py-1">Recent</p>
+              </div>
+      
+              <div class="messages-box">
+                <div class="list-group rounded-0">
+                  <a class="list-group-item list-group-item-action active text-white rounded-0">
+                    <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                      <div class="media-body ml-4">
+                        <div class="d-flex align-items-center justify-content-between mb-1">
+                          <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">25 Dec</small>
+                        </div>
+                        <p class="font-italic mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                      </div>
+                    </div>
+                  </a>
+      
+                  <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                    <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                      <div class="media-body ml-4">
+                        <div class="d-flex align-items-center justify-content-between mb-1">
+                          <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">14 Dec</small>
+                        </div>
+                        <p class="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur. incididunt ut labore.</p>
+                      </div>
+                    </div>
+                  </a>
+      
+                  <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                    <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                      <div class="media-body ml-4">
+                        <div class="d-flex align-items-center justify-content-between mb-1">
+                          <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">9 Nov</small>
+                        </div>
+                        <p class="font-italic text-muted mb-0 text-small">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                      </div>
+                    </div>
+                  </a>
+      
+                  <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                    <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                      <div class="media-body ml-4">
+                        <div class="d-flex align-items-center justify-content-between mb-1">
+                          <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">18 Oct</small>
+                        </div>
+                        <p class="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                      </div>
+                    </div>
+                  </a>
+      
+                  <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                    <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                      <div class="media-body ml-4">
+                        <div class="d-flex align-items-center justify-content-between mb-1">
+                          <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">17 Oct</small>
+                        </div>
+                        <p class="font-italic text-muted mb-0 text-small">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                      </div>
+                    </div>
+                  </a>
+      
+                  <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                    <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                      <div class="media-body ml-4">
+                        <div class="d-flex align-items-center justify-content-between mb-1">
+                          <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">2 Sep</small>
+                        </div>
+                        <p class="font-italic text-muted mb-0 text-small">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                      </div>
+                    </div>
+                  </a>
+      
+                  <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                    <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                      <div class="media-body ml-4">
+                        <div class="d-flex align-items-center justify-content-between mb-1">
+                          <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">30 Aug</small>
+                        </div>
+                        <p class="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                      </div>
+                    </div>
+                  </a>
+      
+                  <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                    <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                      <div class="media-body ml-4">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                          <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">21 Aug</small>
+                        </div>
+                        <p class="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                      </div>
+                    </div>
+                  </a>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-7 px-0">
+            <div class="px-4 py-5 chat-box bg-white">
+              <div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                <div class="media-body ml-3">
+                  <div class="bg-light rounded py-2 px-3 mb-2">
+                    <p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
+                  </div>
+                  <p class="small text-muted">12:00 PM | Aug 13</p>
+                </div>
+              </div>
+      
+              
+              <div class="media w-50 ml-auto mb-3">
+                <div class="media-body">
+                  <div class="bg-primary rounded py-2 px-3 mb-2">
+                    <p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
+                  </div>
+                  <p class="small text-muted">12:00 PM | Aug 13</p>
+                </div>
+              </div>
+      
+              
+              <div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                <div class="media-body ml-3">
+                  <div class="bg-light rounded py-2 px-3 mb-2">
+                    <p class="text-small mb-0 text-muted">Test, which is a new approach to have</p>
+                  </div>
+                  <p class="small text-muted">12:00 PM | Aug 13</p>
+                </div>
+              </div>
+      
+              
+              <div class="media w-50 ml-auto mb-3">
+                <div class="media-body">
+                  <div class="bg-primary rounded py-2 px-3 mb-2">
+                    <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
+                  </div>
+                  <p class="small text-muted">12:00 PM | Aug 13</p>
+                </div>
+              </div>
+      
+              
+              <div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                <div class="media-body ml-3">
+                  <div class="bg-light rounded py-2 px-3 mb-2">
+                    <p class="text-small mb-0 text-muted">Test, which is a new approach</p>
+                  </div>
+                  <p class="small text-muted">12:00 PM | Aug 13</p>
+                </div>
+              </div>
+      
+              
+              <div class="media w-50 ml-auto mb-3">
+                <div class="media-body">
+                  <div class="bg-primary rounded py-2 px-3 mb-2">
+                    <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
+                  </div>
+                  <p class="small text-muted">12:00 PM | Aug 13</p>
+                </div>
+              </div>
+      
+            </div>
+      
+            
+            <form action="#" class="bg-light">
+              <div class="input-group">
+                <input type="text" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                <div class="input-group-append">
+                  <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+                </div>
+              </div>
+            </form>
+      
+          </div>
+        </div-->
+      </div>
+     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+     <script src="socket.io/socket.io.js"></script>
+     <script src="js/Usuario.js"></script>
+</body>
+</html>

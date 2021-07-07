@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tienda Node JS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="css/Usuario.css">
+</head>
+<body>
+    <div class="container py-5 px-4">
+        <!-- For demo purpose-->
+        <header>
+            <div class="container">
+              <div class="row">
+                <form id="NuevoTienda" class="col-md-6" action="http://localhost:3000/api/tienda/nuevo" method="POST">
+                    <h3>Deliberi Puno</h3>
+                    <div class="form-group">
+                      <label for="NDoc">RUC</label>
+                      <input type="text" class="form-control" id="RUC" placeholder="RUC">
+                    </div>
+                    <div class="form-group">
+                        <label for="Nombres">Razon Social</label>
+                        <input type="text" class="form-control" id="RazonSocial" placeholder="Razon Social">
+                    </div>
+                    <div class="form-group">
+                        <label for="Ape_Paterno">Cantida Disponible</label>
+                        <input type="text" class="form-control" id="CantidaDisponible" placeholder="Cantida Disponible">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Iniciar</button>
+                </form>
+                <div class="col-md-6">
+                    <h4>PEDIDOS </h4>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">#HAMBURGUESAS</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          
+                        </tbody>
+                      </table>
+                </div>
+              </div>
+            </div>
+        </header>
+      </div>
+     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+     <script src="socket.io/socket.io.js"></script>
+     <script src="js/Tienda.js"></script>
+</body>
+</html>
